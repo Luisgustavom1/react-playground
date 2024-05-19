@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Performance } from './feature/Performance'
-import { UseTransitionComponent } from './feature/useTransition'
+import { UseTransitionComponent } from './feature/ReactHooks/useTransition'
 
 const FeaturesObj = {
   PERFORMANCE: "performance",
@@ -15,7 +15,9 @@ function App() {
   return (
     <>
       {Object.values(FeaturesObj).map((v) => (
-        <button key={v} onClick={() => setFeature(v)}>
+        <button key={v} onClick={() => setFeature(v)} style={{
+          fontWeight: feature === v ? "bold" : "normal"
+        }}>
           {v}
         </button>
       ))}
