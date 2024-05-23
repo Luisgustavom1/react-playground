@@ -6,7 +6,7 @@ const Tabs = {
   fast: 'fast',
 }
 
-const UseTransitionComponent = () => {
+export const UseTransitionComponent = () => {
   const [tab, setTab] = useState(Tabs.index);
 
   useEffect(() => {
@@ -99,5 +99,3 @@ const SlowItem = () => {
     <span>{start}</span>
   )
 }
-
-export default UseTransitionComponent;

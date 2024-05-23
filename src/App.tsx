@@ -1,36 +1,30 @@
 import { useState } from "react"
-import { UseMemoComponent } from "./feature/useMemo"
-import { ReRender } from "./feature/re-renders";
-import { CreateComponentDuringRender } from "./feature/CreateComponentDuringRender";
-import UseTransitionComponent from "./feature/useTransition";
+import { Performance } from './feature/Performance'
+import { UseTransitionComponent } from './feature/useTransition'
 
-const PerformanceTestObj = {
-  USE_MEMO: "useMemo",
-  RE_RENDERS: "re_renders",
-  CREATE_COMPONENT_DURING_RENDER: "create_component_during_render",
-  USE_TRANSITION: "use_transition",
+const FeaturesObj = {
+  PERFORMANCE: "performance",
+  hooks: "hooks",
 } as const;
 
-type PerformanceTest = (typeof PerformanceTestObj)[keyof typeof PerformanceTestObj]
+type Features = (typeof FeaturesObj)[keyof typeof FeaturesObj]
 
 function App() {
-  const [performanceTest, setPerformanceTest] = useState<PerformanceTest>(PerformanceTestObj.USE_MEMO);
+  const [feature, setFeature] = useState<Features>();
 
   return (
     <>
-      {Object.values(PerformanceTestObj).map((v) => (
-        <button key={v} onClick={() => setPerformanceTest(v)}>
+      {Object.values(FeaturesObj).map((v) => (
+        <button key={v} onClick={() => setFeature(v)}>
           {v}
         </button>
       ))}
       <br />
       <br />
-      {{
-        useMemo: <UseMemoComponent />,
-        re_renders: <ReRender />,
-        create_component_during_render: <CreateComponentDuringRender />,
-        use_transition: <UseTransitionComponent />
-      }[performanceTest]}
+      {feature && {
+        [FeaturesObj.PERFORMANCE]: <Performance />,
+        [FeaturesObj.hooks]: <UseTransitionComponent />,
+      }[feature]}
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useCounter from "../utils/useCounter";
+import useCounter from "../../utils/useCounter";
 
 const GoodChildrenComponent = ({ n }: { n: number }) => {
   useEffect(() => {
