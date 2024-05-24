@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { Performance } from './feature/Performance'
 import { UseTransitionComponent } from './feature/ReactHooks/useTransition'
+import { SuspenseComponent } from "./feature/Suspense";
 
 const FeaturesObj = {
-  PERFORMANCE: "performance",
+  performance: "performance",
   hooks: "hooks",
+  suspense: "suspense",
 } as const;
 
 type Features = (typeof FeaturesObj)[keyof typeof FeaturesObj]
@@ -24,8 +26,9 @@ function App() {
       <br />
       <br />
       {feature && {
-        [FeaturesObj.PERFORMANCE]: <Performance />,
+        [FeaturesObj.performance]: <Performance />,
         [FeaturesObj.hooks]: <UseTransitionComponent />,
+        [FeaturesObj.suspense]: <SuspenseComponent />
       }[feature]}
     </>
   )
