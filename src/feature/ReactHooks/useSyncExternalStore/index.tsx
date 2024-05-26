@@ -1,8 +1,8 @@
 import { useSyncExternalStore } from "react"
 import { store } from "./store"
+import { useOwnSyncExternalStore } from "./useOwnSyncExternalStore"
 
 export const UseSyncExternalStoreComponent = () => {
-
   return (
     <>
       <Title />
@@ -27,6 +27,7 @@ export const Input = () => {
 
 export const PreviewHex = () => {
   const preview = useSyncExternalStore(store.subscribe, store.getSnapshot)
+  console.log("preview hex", preview)
   return <section>
     <strong>Hex:</strong>
     {stringToHex(preview)}
@@ -35,7 +36,8 @@ export const PreviewHex = () => {
 
 
 export const PreviewBase64 = () => {
-  const preview = useSyncExternalStore(store.subscribe, store.getSnapshot)
+  const preview = useOwnSyncExternalStore(store.subscribe, store.getSnapshot)
+  console.log("preview b64", preview)
   return <section>
     <strong>Base64:</strong>
     {btoa(preview)}

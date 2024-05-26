@@ -1,7 +1,8 @@
 export type Listener = () => void;
+export type Unsubscribe = (l: Listener) => void;
 
 let text = ""
-let listeners: Array<Listener> = [];
+const listeners = new Set<Listener>();
 
 export const store = {
   set: (newText: string) => {
@@ -10,11 +11,9 @@ export const store = {
   },
 
   subscribe: (listener: Listener) => {
-    listeners.push(listener);
+    listeners.add(listener);
 
-    return () => {
-      listeners = listeners.filter(l => l !== listener)
-    };
+    return () => listeners.delete(listener);
   },
 
   getSnapshot: () => text,
