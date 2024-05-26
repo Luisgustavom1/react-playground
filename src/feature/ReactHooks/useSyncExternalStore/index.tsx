@@ -6,8 +6,11 @@ export const UseSyncExternalStoreComponent = () => {
   return (
     <>
       <Title />
-      <Input />
-      <Preview />
+      <span>
+        <Input />
+      </span>
+      <PreviewHex />
+      <PreviewBase64 />
     </>
   )
 }
@@ -22,9 +25,21 @@ export const Input = () => {
   return <input value={input} onChange={e => store.set(e.target.value)} />
 }
 
-export const Preview = () => {
+export const PreviewHex = () => {
   const preview = useSyncExternalStore(store.subscribe, store.getSnapshot)
-  return <div>{stringToHex(preview)}</div>
+  return <section>
+    <strong>Hex:</strong>
+    {stringToHex(preview)}
+  </section>
+}
+
+
+export const PreviewBase64 = () => {
+  const preview = useSyncExternalStore(store.subscribe, store.getSnapshot)
+  return <section>
+    <strong>Base64:</strong>
+    {btoa(preview)}
+  </section>
 }
 
 function stringToHex(str: string) {
