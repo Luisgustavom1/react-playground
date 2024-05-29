@@ -1,12 +1,15 @@
 import { useState } from "react"
-import { Performance } from './feature/Performance'
-import { SuspenseComponent } from "./feature/Suspense";
-import { ReactHooks } from "./feature/ReactHooks";
+import { Performance } from '@/feature/Performance'
+import { SuspenseComponent } from "@/feature/Suspense";
+import { ReactHooks } from "@/feature/ReactHooks";
+import { Observer } from "@/feature/Observer";
+import { Button } from "./components/ui/button";
 
 const FeaturesObj = {
   performance: "performance",
   hooks: "hooks",
   suspense: "suspense",
+  observer: 'observer',
 } as const;
 
 type Features = (typeof FeaturesObj)[keyof typeof FeaturesObj]
@@ -16,19 +19,20 @@ function App() {
 
   return (
     <>
-      {Object.values(FeaturesObj).map((v) => (
-        <button key={v} onClick={() => setFeature(v)} style={{
-          fontWeight: feature === v ? "bold" : "normal"
-        }}>
-          {v}
-        </button>
-      ))}
-      <br />
-      <br />
+      <header className="flex gap-2 mb-4">
+        {Object.values(FeaturesObj).map((v) => (
+          <Button key={v} onClick={() => setFeature(v)} variant={
+            feature === v ? 'default' : 'outline'
+          }>
+            {v}
+          </Button>
+        ))}
+      </header>
       {feature && {
         [FeaturesObj.performance]: <Performance />,
         [FeaturesObj.hooks]: <ReactHooks />,
-        [FeaturesObj.suspense]: <SuspenseComponent />
+        [FeaturesObj.suspense]: <SuspenseComponent />,
+        [FeaturesObj.observer]: <Observer />
       }[feature]}
     </>
   )

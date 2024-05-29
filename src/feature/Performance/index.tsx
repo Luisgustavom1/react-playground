@@ -2,6 +2,7 @@ import { useState } from "react"
 import { UseMemoComponent } from "./useMemo"
 import { ReRender } from "./re-renders";
 import { CreateComponentDuringRender } from "./CreateComponentDuringRender";
+import { Button } from "@/components/ui/button";
 
 const PerformanceTestObj = {
   USE_MEMO: "useMemo",
@@ -16,13 +17,16 @@ export function Performance() {
 
   return (
     <>
-      {Object.values(PerformanceTestObj).map((v) => (
-        <button key={v} onClick={() => setPerformanceTest(v)}>
-          {v}
-        </button>
-      ))}
-      <br />
-      <br />
+      <header className="flex gap-2 mb-4">
+        {Object.values(PerformanceTestObj).map((v) => (
+          <Button key={v} variant={
+            performanceTest === v ? 'secondary' : 'outline'
+          } onClick={() => setPerformanceTest(v)}>
+            {v}
+          </Button>
+        ))}
+      </header>
+
       {{
         useMemo: <UseMemoComponent />,
         re_renders: <ReRender />,

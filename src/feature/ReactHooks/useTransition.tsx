@@ -1,5 +1,5 @@
 import { Dispatch, PropsWithChildren, useEffect, useState, useTransition } from 'react';
-import { SlowComponent } from '../../shared/SlowComponent';
+import { SlowComponent } from '@/components/SlowComponent';
 
 const Tabs = {
   index: 'index',
