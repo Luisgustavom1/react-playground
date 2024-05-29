@@ -21,10 +21,14 @@
     "noFallthroughCasesInSwitch": true,
     
     "types": [
-      "vitest/expect", 
       "vitest/jsdom",
       "vitest/globals"
-    ]
+    ],
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
