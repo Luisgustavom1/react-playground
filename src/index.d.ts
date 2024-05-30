@@ -1,7 +1,7 @@
 export {}
 
 declare global {
-  interface Map<K, V> {
+  interface MapC<K, V> {
     clear(): void;
     /**
      * @returns true if an element in the Map existed and has been removed, or false if the element does not exist.
